@@ -1,0 +1,20 @@
+char* reverseString(char* s) 
+{
+      char temp;
+      int length=0;
+      while(*s!=0)
+      {
+          length++;
+          s++;
+      }
+        
+      s=s-length;
+      for(int i=0;i<length/2;i++)
+      {    
+           temp=*(s+i);
+           *(s+i)=*(s+length-i-1);
+           *(s+length-i-1)=  temp;
+      }  
+      
+       return s; 
+}
