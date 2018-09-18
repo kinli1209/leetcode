@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
+        vector<int> row;
+        row.assign(A.at(0).size(),0);//assign row size
+        vector< vector<int> > array_2D;
+        array_2D.assign(A.size(),row);//2D array
+        
+        for(int j=0;j<A.size();j++)
+        {
+           for(int i=0;i<A.at(0).size();i++)
+           {
+              //flip     
+              array_2D.at(j).at(i)= A.at(j).at(A.at(0).size()-i-1);
+              
+              //Invert  
+              array_2D.at(j).at(i)=array_2D.at(j).at(i)^1; 
+           }
+        }
+        return array_2D;
+    }
+};
