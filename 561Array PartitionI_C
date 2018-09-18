@@ -1,0 +1,38 @@
+int arrayPairSum(int* nums, int numsSize) {
+     int sum=0;
+     int base;
+     int compare;
+     int min;
+     int temp;
+     int flag=0;
+     if(numsSize>20000)
+        numsSize=20000;
+    
+    //selection sort
+     for(int base=0;base<(numsSize-1);base++)
+     {
+         min=base;
+         flag=0;
+        for(compare=base+1;compare<numsSize;compare++)
+        {
+            if(*(nums+compare)<*(nums+min))
+            {
+                min=compare;
+                flag=1;
+            }   
+        }
+             if(flag==0)
+             continue;    
+               temp=*(nums+min);
+              *(nums+min)=*(nums+base);
+              *(nums+base)=temp;
+          
+     }
+     
+      for(int i=0;i<numsSize;i=i+2)
+      {
+          sum+= *(nums+i);  
+      }
+    
+     return sum;
+}
