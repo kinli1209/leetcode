@@ -1,0 +1,34 @@
+int* selfDividingNumbers(int left, int right, int* returnSize) {
+    
+     *returnSize=0;
+    int *ptr = (int *)malloc(*returnSize*sizeof(int));
+   
+    int temp;
+    //int digit;
+    int count=0;
+    for(int i=left; i <= right;i++)
+    {
+        temp=i;
+        
+        while(temp)
+        {   
+            int digit=temp%10;
+            if(digit==0||i%digit!=0)
+            {
+                break;
+            }
+            
+            temp=temp/10;
+        }
+        if(!temp)
+        {     
+              ptr = (int *)realloc(ptr, sizeof(int) * (count + 1));
+              *(ptr+count)=i;
+              count++;
+        }
+        
+    }
+    *returnSize = count;
+    return ptr;
+    
+}
