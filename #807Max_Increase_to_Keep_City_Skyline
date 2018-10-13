@@ -1,0 +1,46 @@
+int maxIncreaseKeepingSkyline(int** grid, int gridRowSize, int *gridColSizes) {
+    
+    int row=gridRowSize;
+    int col=*gridColSizes;
+    int sumIncrease=0;
+    
+    int maxTop[50]={0};
+    int maxLeft[50]={0};
+    int newMatrix[50][50]={0};
+    
+    for(int i=0;i<col;i++)
+    {    
+      for(int j=0;j<row;j++)
+      {
+       if(maxTop[i]<= *(grid[j]+i))
+        maxTop[i]=*(grid[j]+i);   
+      }
+       
+    }
+   
+     for(int j=0;j<row;j++)
+    {    
+      for(int i=0;i<col;i++)
+      {
+       if(maxLeft[j]<=*(grid[j]+i))
+          maxLeft[j]= *(grid[j]+i); 
+      }
+    }
+    
+     for(int j=0;j<row;j++)
+    {    
+      for(int i=0;i<col;i++)
+      {
+       if(maxLeft[j]<= maxTop[i])  
+       newMatrix[j][i]=maxLeft[j];
+       else   
+       newMatrix[j][i]=maxTop[i];
+          
+       if(*(grid[j]+i)<= newMatrix[j][i])
+       sumIncrease+= (newMatrix[j][i]-*(grid[j]+i));
+      }
+    }
+    
+    
+    return sumIncrease;
+}
