@@ -1,0 +1,39 @@
+int romanToInt(char* s) {
+    
+    int count=0;
+    int sum=0;
+    int current=0;
+    int last=0;
+    while(*s!=NULL)
+    {
+        s++;
+        count++;
+    }
+    for(int i=0;i<count;i++)
+    {
+        s--;
+        if(*s=='I')
+        current=1;
+        if(*s=='V')
+        current=5;
+        if(*s=='X')
+        current=10;    
+        if(*s=='L')
+        current=50;
+        if(*s=='C')
+        current=100;
+        if(*s=='D')
+        current=500;  
+        if(*s=='M')
+        current=1000; 
+        
+        if(last>current)
+        sum=sum-current;
+        else
+        sum=sum+current;
+        
+        last=current;
+        
+    }
+    return sum;
+}
