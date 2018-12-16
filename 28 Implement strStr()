@@ -1,0 +1,30 @@
+int strStr(char* haystack, char* needle) {
+    
+    if(*needle==NULL)
+        return 0;
+        
+    int index=0;
+    int next=0;
+    while(*haystack!=NULL)
+    {
+        if(*haystack==*needle)
+        {
+            while(*(needle+next)!=NULL)
+            {
+                if(*(haystack+next)==NULL)
+                    return -1;
+                if(*(haystack+next)==*(needle+next))
+                next++;
+                else
+                {   next=0;
+                    break;
+                }
+            }
+            if(next!=0)
+                return index;
+        }
+        index++;
+        haystack++;
+    }
+     return -1;
+}
