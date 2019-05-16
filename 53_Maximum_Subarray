@@ -1,0 +1,16 @@
+int maxSubArray(int* nums, int numsSize){
+    
+    int sum=0;
+    int max=0x80000000;
+
+    for (int index=0;index<numsSize;index++)
+    {
+        sum+=*(nums+index);
+        if(sum<*(nums+index))
+            sum=*(nums+index);
+        if(sum>max)
+            max=sum;
+    }
+    
+    return max;
+}
