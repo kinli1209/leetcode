@@ -1,0 +1,31 @@
+
+int* shuffle(int* nums, int numsSize, int n, int* returnSize){
+
+    
+     int *shuffle_arr = malloc(sizeof(int) * numsSize);
+    *returnSize=numsSize;
+    
+    for(int i=0;i<n;i++)
+    {
+        *(shuffle_arr+2*i)= *(nums+i);
+        *(shuffle_arr+(2*i+1))=*(nums+n+i);    
+    }    
+    return shuffle_arr;
+    
+}
+//Much faster than below
+
+int* shuffle(int* nums, int numsSize, int n, int* returnSize){
+
+    
+     int *shuffle_arr = malloc(sizeof(int) * numsSize);
+    *returnSize=numsSize;
+    
+    for(int i=0;i<n;i++)
+    {
+        shuffle_arr[2*i]= nums[i];
+        shuffle_arr[2*i+1]=nums[n+i];    
+    }    
+    return shuffle_arr;
+    
+}
