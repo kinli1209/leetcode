@@ -1,0 +1,27 @@
+int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize){
+ 
+    int *smaller_num_arr = malloc(sizeof(int) * numsSize);
+    *returnSize=numsSize;
+    int count=0;
+    int temp=0;
+    int count_arr[500]={0};
+    for(int i=0;i<numsSize;i++)
+    {
+        temp= *(nums+i);
+       
+        for(int j=i;j<numsSize;j++)
+        {
+          if( temp < *(nums+j))
+             count_arr[j]++;
+          else if( temp > *(nums+j))
+             count_arr[i]++; 
+        } 
+    }  
+    
+    for(int i=0;i<numsSize;i++)
+    {
+     *(smaller_num_arr+i)= count_arr[i];  
+    }
+    
+    return smaller_num_arr;        
+}
