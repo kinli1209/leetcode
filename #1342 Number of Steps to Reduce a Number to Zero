@@ -1,0 +1,18 @@
+int numberOfSteps (int num){
+    
+    int step_num=0;
+    while(num!=0)
+    {
+        if(num%2==0)
+        {
+            num/=2;
+            step_num++;
+        }
+        else
+        {
+            num--;
+            step_num++;
+        }   
+    }
+    return step_num;
+}
