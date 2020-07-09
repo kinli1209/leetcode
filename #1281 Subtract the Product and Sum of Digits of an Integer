@@ -1,0 +1,17 @@
+int subtractProductAndSum(int n){
+
+    int difference=0; 
+    int product_digits=1;
+    int sum_digits=0;
+ 
+    while(n!=0)
+    {
+       product_digits*=(n%10);
+       sum_digits+=(n%10);
+       n/=10;
+    }
+   
+    difference=product_digits-sum_digits;
+    
+    return difference;
+}
