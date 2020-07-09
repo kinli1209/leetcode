@@ -1,0 +1,31 @@
+int* decompressRLElist(int* nums, int numsSize, int* returnSize){
+
+      int freq_sum=0;
+      int freq=0;
+      int k=0;
+      for(int i=0;i<numsSize;i++)
+      {
+          if(i%2==0)
+          freq_sum=freq_sum+*(nums+i); 
+      }
+     * returnSize=freq_sum;
+      int *decompressed_list = malloc(sizeof(int)*freq_sum);
+    
+     for(int i=0;i<numsSize;i++)
+     {
+          if(i%2==0)
+          freq=*(nums+i);
+          else
+          {
+             for(int j=0;j<freq;j++)
+             {
+                 
+              *(decompressed_list+k)=*(nums+i);
+                 k++;
+             }
+          }
+         
+     }
+    return decompressed_list;
+    
+}
