@@ -1,0 +1,18 @@
+char * restoreString(char * s, int* indices, int indicesSize){
+    
+   
+    char *shuffled_string = malloc(sizeof(char)*(indicesSize+1));
+    int temp;
+ 
+    for(int i=0;i<indicesSize;i++)
+    {
+        temp=*(indices+i);
+        *(shuffled_string+temp)= *(s+i);
+        
+    }
+    
+     *(shuffled_string+indicesSize)='\0';
+    
+        return shuffled_string;
+        
+}
