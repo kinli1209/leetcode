@@ -1,0 +1,32 @@
+int balancedStringSplit(char * s){
+    
+    int split_num=0;
+    int Lcount=0;
+    int Rcount=0;
+    while(*s!=0)
+    {
+        if(*s=='L')
+        {
+            Lcount++;
+        }
+        if(*s=='R')
+        {
+            Rcount++;
+        }
+        
+        if((Lcount==Rcount)&(Lcount!=0))
+        {
+            split_num++;
+            Lcount=0;
+            Rcount=0;
+            
+        }
+        
+        s++;
+        
+    }
+    
+    return split_num;
+    
+
+}
