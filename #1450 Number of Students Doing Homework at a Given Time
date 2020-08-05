@@ -1,0 +1,18 @@
+int busyStudent(int* startTime, int startTimeSize, int* endTime, int endTimeSize, int queryTime){
+    
+    int Num=0;
+    
+    for(int i=0;i<startTimeSize;i++)
+    {
+        if(startTime[i]==queryTime)
+           Num++;
+        else if(endTime[i]==queryTime)
+           Num++;
+        else if((startTime[i]<queryTime)&(endTime[i]>queryTime))
+           Num++;  
+        
+    }
+    
+    return Num;  
+
+}
