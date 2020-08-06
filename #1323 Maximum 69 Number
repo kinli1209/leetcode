@@ -1,0 +1,25 @@
+
+int maximum69Number (int num){
+    
+    int numdigit[4]={0};
+    int i=0;
+    int output=0;
+    while(num!=0)
+    {
+        
+        numdigit[i]=num%10;
+        num=num/10;
+        i++;
+    }
+    
+    for(int i=3;i>=0;i--)
+    {
+        if(numdigit[i]==6)
+        {
+        numdigit[i]=9;
+        break;    
+        }
+    }
+    output= numdigit[0]+numdigit[1]*10+numdigit[2]*100+numdigit[3]*1000;
+    return output;
+}
