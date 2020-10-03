@@ -1,0 +1,21 @@
+void moveZeroes(int* nums, int numsSize){
+     int *new_nums = calloc(numsSize, sizeof(int));
+     
+     int temp=0;
+     for(int i=0;i<numsSize;i++)
+     {
+         if((*(nums+i))!=0)
+         {
+           *(new_nums+temp)=*(nums+i);
+           temp++;
+         } 
+     }
+   
+  
+     for(int i=0;i<numsSize;i++)
+     {
+          *(nums+i)=*(new_nums+i);
+     }
+ 
+
+}
