@@ -1,0 +1,90 @@
+char * addBinary(char * a, char * b){
+
+  
+        int i, j,len_a,len_b,max;
+        char temp;
+        char  carry=0;
+        len_a= strlen(a);
+        len_b= strlen(b);
+        if(len_a>=len_b) 
+         max=len_a;
+        else
+         max=len_b;   
+    
+        max++;
+   
+        char *ans = malloc(sizeof(char)*max+1);
+    
+        j=strlen(a) - 1;
+        for(i=0; i<j; i++)
+        {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                j--;
+        }
+    
+         j=strlen(b) - 1;
+        for(i=0; i<j; i++)
+        {
+                temp = b[i];
+                b[i] = b[j];
+                b[j] = temp;
+                j--;
+        }
+    
+        for(i=0; i<max; i++)
+        {
+             ans[i]='0';
+             if(carry==1)
+             {
+                ans[i]='1';
+                carry=0;
+             }
+             if(i<len_a)
+             {
+                 if(a[i]=='1')
+                 {
+                 if(ans[i]=='1')    
+                 {carry=1;
+                  ans[i]='0';
+                 }
+                 else if(ans[i]=='0')
+                 {
+                     ans[i]='1';
+                 }
+                 }
+             }    
+              if(i<len_b)
+             {
+                 if(b[i]=='1')
+                 {
+                 if(ans[i]=='1')    
+                 {carry=1;
+                  ans[i]='0';
+                 }
+                 else if(ans[i]=='0')
+                 {
+                     ans[i]='1';
+                 }
+                     
+                 }
+             }    
+                 
+        }
+    if(*(ans+max-1)=='0')
+      *(ans+max-1)='\0';  
+    else
+     *(ans+max)='\0';
+    
+      j=strlen(ans) - 1;
+        for(i=0; i<j; i++)
+        {
+                temp = ans[i];
+                ans[i] = ans[j];
+                ans[j] = temp;
+                j--;
+        }
+    
+        return ans;
+}
