@@ -1,0 +1,41 @@
+int climbStairs(int n){
+    
+        
+
+/*  Recursion take much time
+    int fun(int m)
+    {
+        if(m==0)
+        return 0;
+        
+        if(m==1)
+        return 1;
+        
+        if(m==2)
+        return 2;
+        
+        if(m>2)
+        return fun(m-1)+fun(m-2);
+    } 
+*/
+   // mathod=fun(3);
+    
+  int a1=0, a2=1, a3=2, i;
+
+  if(n==1) return 1; 
+  if(n==2) return 2;
+
+ for(i=3; i<=n; i++) {
+
+   a1=a2;
+
+   a2=a3;
+
+   a3=a1+a2;
+
+ }
+
+ return a3;
+  
+
+}
