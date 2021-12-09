@@ -1,0 +1,128 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* creatNode(int number){
+    struct ListNode* temp=( struct ListNode*) malloc(sizeof(struct ListNode));
+    temp->val=number;
+    temp->next=NULL;
+    return temp;
+    
+}
+
+void insNode(struct ListNode* dat1,struct ListNode* dat2){
+    dat2->next=dat1->next;
+    dat1->next=dat2;
+}
+
+int max(int a,int b)
+{
+    if(a>=b)
+        return a;
+    else
+        return b;
+}
+
+
+void insertAfter(struct ListNode *prev_node, int new_val)
+{
+    if (prev_node == NULL)
+    {
+        printf("prev_node 不得為 NULL");
+        return;
+    }
+
+    struct ListNode *new_node = (struct ListNode *)malloc(sizeof(struct ListNode));
+    new_node->val = new_val;
+    new_node->next = prev_node->next;
+    prev_node->next = new_node;
+}
+
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
+
+    int carry=0;
+    int arr[101]={0};
+    int index1=0;
+    int index2=0;
+    int max_length=0;
+   // struct Node *new_node = (struct ListNode *)malloc(sizeof(struct ListNode));
+   // struct ListNode * l3;//=creatNode(0);
+      struct ListNode *l4;
+     
+    while(l1!=NULL)
+    {
+       arr[index1]=l1->val;
+       index1++;
+        l1=l1->next;
+    }
+    
+    while(l2!=NULL)
+    {
+       arr[index2]+=l2->val;
+       index2++;
+        l2=l2->next;
+    }
+    
+    max_length=max(index1,index2);
+    
+     struct ListNode * l3=creatNode(arr[0]);
+     struct ListNode *l5=creatNode(arr[0]);
+    // l5=l3->next;
+    //l5=l3;
+    for(int i=0;(i<max_length);i++)
+    {
+       
+        
+        if(arr[i]>9)
+        {
+            arr[i]-=10;
+            arr[i+1]+=1;
+        }
+        if(i==0)
+        {
+            l3=creatNode(arr[i]);
+        }
+        else
+        l4=creatNode(arr[i]);
+       
+        if(i>0)
+        if(l3->next!=NULL)
+        l5=l3->next;
+        else
+        l3->next=l4;
+        
+        if(i>1)
+        while((l5->next!=NULL))
+          l5=l5->next;
+        
+            
+        l5->next=l4;
+          
+       
+    }
+    
+    if(arr[max_length]==1)
+    {
+         l4=creatNode(1);
+         
+         
+         l5=l3->next;
+         
+          if(l5!=NULL)
+          while((l5->next!=NULL))
+          l5=l5->next;
+       
+          if(l5!=NULL)
+         l5->next=l4;
+         else
+         l3->next=l4;  
+        
+    }  
+  
+    return l3;
+}
