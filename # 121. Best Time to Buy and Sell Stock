@@ -1,0 +1,39 @@
+int max(int a, int b)
+{
+    if(a>=b)
+        return a;
+    else
+        return b;
+}
+
+
+int maxProfit(int* prices, int pricesSize){
+
+    int MaxProfit=0;
+    int tempProfit=0;
+    int index1=0;
+    int index2=0;
+    int buyp=0;
+    buyp=prices[0];
+    
+    //int 
+    for(int i=0;i<pricesSize;i++)   
+    {
+        if(buyp>prices[i])
+        {
+        buyp=prices[i];
+        index1=i;
+        }
+        
+          
+        MaxProfit=prices[i]-buyp;
+       tempProfit=max(MaxProfit,tempProfit);
+        
+        
+    }
+    
+    
+    
+    
+    return tempProfit;
+}
