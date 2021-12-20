@@ -1,0 +1,42 @@
+
+
+int majorityElement(int* nums, int numsSize){
+
+    int count=0;
+    int val=0;
+    int half=numsSize/2;
+    int mark[numsSize]; 
+    
+    for(int i=0;i<numsSize;i++)
+    {
+        while((mark[i]==1)&(i<numsSize))
+        {
+            i++;
+        }
+           
+        val=nums[i];
+        
+        
+        
+         for(int j=0;j<numsSize;j++)
+        {
+           
+         
+          if(val==nums[j])
+          {
+              count++;
+              mark[j]=1;
+              if(count>half)
+                  return val;
+              
+          }   
+        
+        }    
+         count=0;   
+        
+    }
+    
+    
+    return val;
+    
+}
