@@ -1,0 +1,96 @@
+int myAtoi(char * s){
+
+    int index=0;
+    int sign=1;
+    int signcount=0;
+   long long temp=0;
+    int val=0;
+    int start=0;
+    char num=0;
+    int boundary=1024*1024*1024*2-1;
+    while(*(s+index)!=NULL)
+    {
+        if(*(s+index)==' ')
+        {
+            index++;
+             if( start==2)
+            break;
+              if( signcount>0)
+            break;
+            
+        }
+        if(*(s+index)=='-')
+        {
+            
+           signcount++;
+              if( signcount>1)
+            break;
+              if( start==2)
+            break;
+            sign=-1;
+        }
+        if(*(s+index)=='+')
+        {
+             signcount++;
+            
+             if( signcount>1)
+            break;
+              if( start==2)
+            break;
+             sign=1;
+            
+        }
+        
+       
+        
+        if((*(s+index)<'0')||(*(s+index)>'9'))
+        {
+             if((*(s+index)!=' ')&&(*(s+index)!='-')&&(*(s+index)!='+'))
+             {
+                 start=2;   
+                 break;
+             }
+        }
+        
+        if((*(s+index)>='0')&&(*(s+index)<='9'))
+        {
+            num=*(s+index)-'0';
+            val=num;
+            temp=temp*10+val;
+             if(temp>boundary)
+             { 
+                 if(sign==-1)
+                 {
+                     temp=  boundary;
+                     
+                     temp++;
+                 }
+                 else
+                    temp=  boundary;    
+                 
+                 break;
+             }
+            start=1;
+        }
+        
+         if(start==2)
+          break;
+             
+        if(start==1)
+            start=2;
+        
+        
+        
+        index++;
+        
+    }
+    
+   
+    
+    temp=temp*sign;
+    
+    
+    return temp;
+        
+        
+}
