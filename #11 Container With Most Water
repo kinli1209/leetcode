@@ -1,0 +1,49 @@
+
+int min(int a,int b)
+{
+    if(a<=b)
+        return a;
+    else
+        return
+        b;
+}
+
+int max(int a,int b)
+{
+    if(a>=b)
+        return a;
+    else
+        return
+        b;
+}
+
+int maxArea(int* height, int heightSize){
+
+    int max_area=0;
+        int area=0;
+        int size=heightSize;
+        int left=0;
+        int right=size-1;
+        
+        int H_temp=0;
+        
+        while(left<right)
+        {
+        
+        H_temp=min(height[left],height[right]);
+        area=(right-left)*H_temp;
+        max_area=max(max_area,area);
+        if(height[left]<height[right])
+            left++;
+        else  if(height[right]<height[left])
+            right--;
+            else
+                left++;
+            
+        }
+        
+        return max_area;
+    
+
+    
+}
