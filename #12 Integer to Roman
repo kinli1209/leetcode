@@ -1,0 +1,210 @@
+
+
+char * intToRoman(int num){
+    
+    //  1 <= num <= 3999
+    // I   1 
+    // II  2
+    // III 3
+    // XXVII 27
+    // IV 4 
+    // IX 9
+    
+    //max 4 digit
+    int digit[4];
+    int index=0;
+    int index_2=0;
+    int digit_2=0;
+    int digit_3=0;
+    int digit_4=0;
+    int temp=num;
+    char *ans= malloc(20*sizeof(char));
+    
+    while(temp!=0)
+    {
+        digit[index]=temp%10;
+        temp=temp/10;
+        index++;
+    }
+    //if(digit[0]==3)
+      //  ans[0]='I';
+   
+    switch(digit[3])
+    {
+         
+        case 1 :
+        case 2 :
+        case 3 :
+                 
+            for(int i=0;i<digit[3];i++)
+            {
+                ans[index_2]='M';
+                index_2++;
+            }
+                
+            break;
+        default:
+            break;
+            
+    }
+    
+    
+       switch(digit[2])
+    {
+         
+        case 1 :
+        case 2 :
+        case 3 :
+                 
+            for(int i=0;i<digit[2];i++)
+            {
+                ans[index_2]='C';
+                index_2++;
+            }
+                
+            break;
+          
+         case 4 :
+                ans[index_2]='C';
+                index_2++;      
+                ans[index_2]='D';
+                index_2++;    
+         
+             break;
+        case 5 : 
+                ans[index_2]='D';
+                index_2++;   
+               break;
+        case 6 :
+        case 7 :
+        case 8 :      
+                ans[index_2]='D';
+                index_2++;      
+                
+            for(int i=0;i<digit[2]-5;i++)
+            {
+                ans[index_2]='C';
+                index_2++;
+            }
+               
+             break;      
+             case 9 :
+                ans[index_2]='C';
+                index_2++;      
+                ans[index_2]='M';
+                index_2++;     
+               break;
+        default:
+            break;
+            
+    }
+    
+         switch(digit[1])
+    {
+         
+        case 1 :
+        case 2 :
+        case 3 :
+                 
+            for(int i=0;i<digit[1];i++)
+            {
+                ans[index_2]='X';
+                index_2++;
+            }
+                
+            break;
+          
+         case 4 :
+                ans[index_2]='X';
+                index_2++;      
+                ans[index_2]='L';
+                index_2++;    
+         
+             break;
+        case 5 : 
+                ans[index_2]='L';
+                index_2++;   
+               break;
+        case 6 :
+        case 7 :
+        case 8 :      
+                ans[index_2]='L';
+                index_2++;      
+                
+            for(int i=0;i<digit[1]-5;i++)
+            {
+                ans[index_2]='X';
+                index_2++;
+            }
+               
+             break;      
+             case 9 :
+                ans[index_2]='X';
+                index_2++;      
+                ans[index_2]='C';
+                index_2++;     
+               break;
+        default:
+            break;
+            
+    }
+    
+    
+     switch(digit[0])
+    {
+         
+        case 1 :
+        case 2 :
+        case 3 :
+                 
+            for(int i=0;i<digit[0];i++)
+            {
+                ans[index_2]='I';
+                index_2++;
+            }
+                
+            break;
+          
+         case 4 :
+                ans[index_2]='I';
+                index_2++;      
+                ans[index_2]='V';
+                index_2++;    
+         
+             break;
+        case 5 : 
+                ans[index_2]='V';
+                index_2++;   
+               break;
+        case 6 :
+        case 7 :
+        case 8 :      
+                ans[index_2]='V';
+                index_2++;      
+                
+            for(int i=0;i<digit[0]-5;i++)
+            {
+                ans[index_2]='I';
+                index_2++;
+            }
+               
+             break;      
+             case 9 :
+                ans[index_2]='I';
+                index_2++;      
+                ans[index_2]='X';
+                index_2++;     
+               break;
+        default:
+            break;
+            
+    }
+    
+    //ans[index+1]=NULL;
+    ans[index_2]='\0';
+    
+    
+    
+    return ans; 
+    
+}
