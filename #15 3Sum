@@ -1,0 +1,53 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+         
+        vector<vector<int>> ans;
+        int size=nums.size();
+        
+        if(size==0)
+            return ans; 
+         if(size==1)
+            return ans; 
+           if(size==2)
+            return ans; 
+        
+       
+        vector v(3,0);
+        //int temp[3]={0};
+      //  ans.push_back(v);
+        sort(nums.begin(),nums.end());//sort the vector
+        if(nums[0] > 0)
+            return ans;
+        
+        int first,second,third;// a+b=-c
+        unordered_map<int,int> umap; //hashmap 
+        for (int i=0;i<size;i++)
+        {
+            umap[nums[i]]=i;//duplicate will be overwrite
+            
+        }
+        
+        for(int i=0;i<size-2;i++)
+        {
+            first=nums[i];
+           
+            if(first>0)
+                break;
+            for(int j=i+1;j<size-1;j++)
+            {
+                second=nums[j];
+                 third=0-(first+second);
+                if(umap.count(third)&&(umap.find(third)->second>j))
+                   ans.push_back({first,second,third});
+                
+                 
+                 j=umap.find(second)->second;//avoid duplicate
+            }
+            i=umap.find(first)->second;            
+        }
+           
+        return ans;
+        
+    }
+};
