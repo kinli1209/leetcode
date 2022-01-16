@@ -1,0 +1,85 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        
+        //nums.sort();
+        vector<vector<int>> ans;
+        //1. sorting 
+        sort(nums.begin(), nums.end());
+        int index=0;
+        string temp;
+        int size=0;
+        size=nums.size();
+        if(size<4)
+            return ans; // if lens<4 we retun empty ans
+        
+        //ans.push_back(nums);
+        //a+b+c=target-d
+        int a1,b1,c1,d1;
+        long a=nums[0],b=nums[1],c=nums[2],d=nums[size-1];
+        long result=target-d;
+        long  sum=a+b+c;
+        if(target<=0&&a>0)
+            return ans; 
+        if(target>=0&&d<0)
+            return ans; 
+        unordered_map<string, int> table;
+                         //d c b a                   
+        for(int i=0;i<size-3;i++)
+        {
+           
+          
+            while(i>0&&(i<size-3)&&nums[i]==nums[i-1])
+                i++;
+            
+              a=nums[i];
+            for(int j=i+1;j<size-2;j++)
+            {
+              
+                b=nums[j];
+                
+                
+                for(int k=j+1;k<size-1;k++)
+                {
+                  
+                
+                    
+                     c=nums[k];
+                    
+                 
+                    sum=a+b+c;
+                    for(int l=size-1;l>k;l--)
+                    {
+                     
+                     
+                        d=nums[l];
+                        result=target-d;
+                        if(sum==result)
+                        { 
+                         // to_string(a)  
+                          temp=to_string(a)+to_string(b)+ to_string(c); 
+                         
+                            auto it = table.find(temp);
+                            if (it == table.end()) 
+                          {
+                           a1=a;b1=b;c1=c;d1=d;     
+                           ans.push_back({a1,b1,c1,d1});
+                           table[temp]=index++;     
+                           break;
+                          }
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        //if()
+       // ans.push_back(nums);
+        return ans;
+        
+        
+    }
+};
