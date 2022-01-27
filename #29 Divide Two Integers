@@ -1,0 +1,45 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+       int ct=1; 
+       int ans=0;
+     long  int temp=abs(dividend);
+     long  int temp2=abs(divisor);
+       long  int temp3=abs(divisor);
+        
+        if(dividend==0)
+           return 0; 
+        
+        if((dividend==-2147483648)&&(divisor==-1))
+            return -(dividend+1);
+        
+         if((divisor==1))    
+            return dividend;
+         
+         if((divisor==-1))    
+            return -dividend;
+        
+         if((temp<temp2))
+             return 0; 
+             
+        while(temp >=temp2)
+        {
+            ans += ct;
+            temp = temp-temp2;
+            temp2 = temp2<<1;
+            ct = ct<<1;
+        }
+        
+        while((temp>=temp3))
+        {
+            ans++;
+            temp=temp-temp3;
+        }
+        if((dividend>0&&divisor<0)||(dividend<0&&divisor>0))
+        {
+            ans=0-ans;
+        }
+        
+        return ans;
+    }
+};
