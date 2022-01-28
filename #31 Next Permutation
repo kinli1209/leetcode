@@ -1,0 +1,51 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int size=nums.size();
+        int temp=nums[size-1];
+        int index=-1;
+        int pre;
+        for(int i=size-1;i>0;i--)
+        {
+            if(nums[i]>nums[i-1])
+            {
+                index=i;
+                //temp=nums[i-1];
+                //nums[i-1]=nums[i];
+                //nums[i]=temp;
+                break;
+            }
+            
+        }
+        
+        // not have a lexicographical larger rearrangement
+        if(index==-1)
+        {
+            reverse(nums.begin(),nums.end());
+            return;
+        }
+        
+        // index-1 1  index 9
+               //     1 9 6 4    9 1 6 4     4 1 6 9
+        temp=nums[index];
+        pre=index;
+        for(int i=index+1;i<size;i++)
+        {
+          
+            if((nums[i]>nums[index-1])&&(nums[i]<nums[index]))
+            {
+                if(nums[i]<temp)
+                {
+                temp=nums[i];    
+                pre=i;
+                }
+            }
+            
+        }
+        
+        swap(nums[index-1],nums[pre]);
+        sort(nums.begin()+index,nums.end());
+        
+        
+    }
+};
