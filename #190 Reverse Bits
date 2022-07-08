@@ -1,0 +1,18 @@
+uint32_t reverseBits(uint32_t n) {
+    
+    
+    uint32_t ans=0;
+    uint32_t temp_bit;
+   
+ 
+     for( uint32_t i=0;i<32;i++)
+   {
+       temp_bit= (1& (n>>(i)));
+       ans=ans+(temp_bit<<(31-i));
+        
+   }
+ 
+    return ans;
+    
+    
+}
