@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> ans;
+    vector<int> temp;
+ unordered_map<int, int> hash;
+        for(int i=0;i<nums.size();i++)
+        {
+            hash[target-nums.at(i)]=i;
+           
+        }
+        
+         for(int i=0;i<nums.size();i++)
+        {
+            if(hash.find(nums.at(i))==hash.end())
+               ;
+              else if(i!=hash.at(nums.at(i)))
+               {
+                   ans.push_back(i);
+                   ans.push_back(hash.at(nums.at(i)));
+                   return ans;
+               } 
+        }
+    
+        
+        return ans;
+        
+    }
+};
