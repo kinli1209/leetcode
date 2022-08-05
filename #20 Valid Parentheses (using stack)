@@ -1,0 +1,118 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        bool ans=true;
+         int  a=0,b=0,c=0;
+         int  flag_a=0,flag_b=0,flag_c=0;
+        char temp;
+       
+        vector<char> mystack; 
+        for(int i=0;i<s.size();i++)
+        {
+            temp=s[i];
+            if(s[i]=='(')
+             a++;
+            if(s[i]==')')
+             a--;
+           
+            if(s[i]=='{')
+             b++;
+             if(s[i]=='}')
+             b--;
+            
+            if(s[i]=='[')
+             c++;
+            if(s[i]==']')
+             c--;
+            
+            mystack.push_back(s[i]);
+            
+            
+           
+         if((a>0)&&(b==0)&&(c==0))
+        {  
+            flag_a=1;
+                
+        } 
+        
+        if((b>0)&&(a==0)&&(c==0))
+        {
+            flag_b=1;  
+            
+        }
+           
+        if((c>0)&&(b==0)&&(a==0))
+        {
+            flag_c=1;
+            
+        } 
+        
+        if((flag_a==1)&&(a==0))
+        {
+            flag_a=0;
+            if((b!=0)||(c!=0))
+                return false;
+        }
+           
+        if((flag_b==1)&&(b==0))
+        {
+            flag_b=0;
+            if((a!=0)||(c!=0))
+                return false;
+        }
+        
+        if((flag_c==1)&&(c==0))
+        {
+            flag_c=0;
+            if((b!=0)||(a!=0))
+                return false;
+        }
+            
+             if(!mystack.empty())
+          if(mystack.back()==']')
+            {
+               mystack.pop_back();
+               if(mystack.empty())
+                   return false;
+              
+               if(mystack.back()=='[')
+               mystack.pop_back();
+               else
+               return false;
+            }
+            
+            if(!mystack.empty())
+            if(mystack.back()==')')
+            {
+               mystack.pop_back();
+                if(mystack.empty())
+                   return false;
+                
+               if(mystack.back()=='(')
+               mystack.pop_back();
+               else
+               return false;
+            }
+            
+            if(!mystack.empty())
+            if(mystack.back()=='}')
+            {
+               mystack.pop_back();
+               if(mystack.empty())
+                   return false;
+                
+               if(mystack.back()=='{')
+               mystack.pop_back();
+               else
+               return false;
+            }
+   
+            
+        }
+        
+        if((a==0)&&(b==0)&&(c==0))
+        return true;
+        else
+        return false;
+    }
+};
