@@ -1,0 +1,60 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> ans;
+        
+        vector<int> temp;
+        int length=nums.size();
+        int mytemp=1;
+        int count=0;
+        int index;
+        for(int i=0;i<length;i++)
+        {
+            if(nums[i]==0)
+            {
+                count++;
+                index=i;
+            }
+            else
+            {
+            mytemp=mytemp*nums[i];
+            }
+            
+            if(count>=2)
+            break;
+            
+        }    
+        
+        if(count==2)
+        {
+            for(int i=0;i<length;i++)
+            {
+                ans.push_back (0);
+            }
+              return ans;
+        }    
+        
+        if(count==1)
+        {
+            for(int i=0;i<length;i++)
+            {
+                if(i==index)
+                ans.push_back (mytemp);
+                else
+                ans.push_back (0);   
+                
+            }
+              return ans;
+        }    
+        
+         for(int i=0;i<length;i++)
+        {
+  
+             ans.push_back (mytemp/nums[i]);
+                  
+        }
+        
+        
+        return ans;
+    }
+};
