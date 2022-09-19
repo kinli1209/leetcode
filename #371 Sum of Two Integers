@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int getSum(int a, int b) {
+    long  int sum=0;
+        int temp=0;
+        // a    0x0111
+        // b    0x0101
+        //a&b   0x0101
+        //a|b     0111
+        //carry   0101
+        //a^b     0010
+        temp=a^b;
+        sum=a&b;
+        sum=sum*2;
+        
+        if(sum==0)
+            return temp;
+        else
+        return getSum(temp,sum);
+      
+    }
+};
