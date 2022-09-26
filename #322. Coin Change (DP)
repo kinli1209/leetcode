@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+       
+        int count=0;
+        vector<int> array();
+        int sum=0;
+        int index=coins.size()-1;
+        int n=coins.size();
+        int dp[n+1][amount+1];
+        
+        sort(coins.begin(),coins.end());
+        
+        
+        
+        if(amount==0)
+            return 0;
+        
+         if(coins[0]>amount)
+            return -1;
+     
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=amount;j++)
+            {
+                if(i==0)// when there are no elements in the array, then we would require an infinite number of coins to reach that amount.
+                    dp[i][j]= INT_MAX-1;
+                if(j==0)
+                    dp[i][j]=0;
+            }
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=amount;j++)
+            {
+                if(coins[i-1]<=j)
+                    dp[i][j]= min(1+dp[i][j-coins[i-1]], dp[i-1][j]);
+                else
+                    dp[i][j]= dp[i-1][j];
+            }
+        }
+        
+        if(dp[n][amount]> amount)// because the minimum number of coins cannot be greater than the amount
+            return -1;
+        else 
+            return dp[n][amount];
+        
+    
+        
+    }
+};
