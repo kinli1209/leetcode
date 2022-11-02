@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int windowstart=0;
+        int windowend=0;
+        int maxC=0;
+        int ans=-1;
+        int curlength;
+        unordered_map<char,int> hp;
+        
+        while(windowend<s.size())
+        {
+            hp[s[windowend]]++;
+            curlength=windowend-windowstart+1;
+            maxC=max(maxC, hp[s[windowend]]);
+            if(curlength-maxC>k)
+            {
+                hp[s[windowstart]]--;
+                windowstart++;
+                
+            }
+            curlength=windowend-windowstart+1;
+            ans=max(ans,curlength);
+            
+            windowend++;
+        }
+        
+        
+        
+        return ans;
+    }
+};
