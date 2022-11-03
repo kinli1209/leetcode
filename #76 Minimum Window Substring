@@ -1,0 +1,50 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        
+        
+     
+        if(s.size()<t.size()) 
+            return "";
+        int winstart=0;
+        int winend=0;
+        int count=0;
+        unordered_map<char,int> hp;
+        bool ismatch=false;
+        bool yes=false;
+        int min=100001;
+        int curlength=0,begin,theend;
+        
+        for(int i=0;i<t.size();i++)
+        {
+            hp[t[i]]++;
+        }
+        
+        for(int winend=0;winend<s.size();winend++)
+        {
+            if(hp[s[winend]]>0) 
+            count++; 
+            
+            hp[s[winend]]--;
+            
+            if(count==t.length())
+            {
+                while(winstart < winend && hp[s[winstart]] < 0) 
+                {hp[s[winstart]]++, winstart++;  }
+                
+                 if(min > winend-winstart) min = winend-(begin=winstart)+1; //update the min length
+                
+                 hp[s[winstart++]]++; //move low ahaead and also increment the value
+                 count--; //count-- as we are moving low ahead & low pointed to a char in t before
+                
+            }
+            
+        }
+     
+         if(min==100001)
+         return "";
+         else
+         return s.substr(begin,min);
+        
+    }
+};
