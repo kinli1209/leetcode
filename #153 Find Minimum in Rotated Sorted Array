@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)
+            return nums[0];
+        
+        if(nums[0]<nums[n-1])
+        return nums[0];
+            
+        int left=0;
+        int right=n-1;
+        int middle = left + (right - left) / 2;
+        int min=nums[left];
+        
+        
+        while(left<right)
+        {
+            if(nums[left]<nums[right])
+            return nums[left];
+            
+            if(nums[middle]>nums[right])
+            {
+                left=middle+1;
+            }
+            else if(nums[left]>nums[middle])
+            {
+                right=middle;
+            }
+            
+             middle = left + (right - left) / 2;
+            
+        }
+        
+        
+        
+        return nums[left];
+    }
+};
