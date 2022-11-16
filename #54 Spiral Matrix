@@ -1,0 +1,80 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int i=0;
+        int j=0;
+        
+        int first_row=0;
+        int last_row=m-1;
+        int first_col=0;
+        int last_col=n-1;
+        int state=1;
+        int total=m*n;
+       
+        while(total>0)
+        {
+            
+            switch(state)
+            {
+                case 1:
+                if(j<last_col)
+                {    
+                ans.push_back(matrix[i][j]);
+                total--;   
+                j++;
+                }
+                if(j==last_col)
+                {
+                    first_row++;
+                    state=2;
+                }                       
+                    break;
+                    
+                case 2:
+                ans.push_back(matrix[i][j]);
+                  total--;    
+                i++;
+                if(i==last_row)
+                {
+                    last_col--;  
+                    state=3;
+                }                       
+                    break;
+                    
+                   case 3:
+                ans.push_back(matrix[i][j]);
+                 total--;    
+                j--;
+                if(j==first_col)
+                {
+                    last_row--;   
+                    state=4;
+                }                       
+                    break;    
+                    
+                case 4:
+                ans.push_back(matrix[i][j]);
+                total--;    
+                i--;
+                if(i==first_row)
+                {
+                    first_col++;
+                    state=1;
+                }                       
+                    break; 
+                    
+                    
+            }
+                
+          
+          
+        }
+        
+        
+        return ans;
+    }
+};
