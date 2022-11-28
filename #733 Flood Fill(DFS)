@@ -1,0 +1,33 @@
+class Solution {
+public:
+    
+    void paint(vector<vector<int>>& image,int i,int j,int stcolor,int color)
+    {
+        if(i<0||i>=image.size()||j<0||j>=image[0].size()|| image[i][j]!=stcolor )
+            return;
+        
+        if(stcolor==color)
+        return;
+        
+        if(image[i][j]==stcolor)
+        image[i][j]=color;
+        
+        paint( image, i-1, j, stcolor,color);
+        paint( image, i+1, j, stcolor,color);
+        paint( image, i, j-1, stcolor,color);
+        paint( image, i, j+1, stcolor,color);
+        
+    }
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+      
+        int row=sr;
+        int col=sc;
+        int stcolor=image[row][col];
+        
+        paint(image,row,col,stcolor,color);
+            
+       
+        return image;
+    }
+};
