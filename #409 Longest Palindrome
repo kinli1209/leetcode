@@ -1,0 +1,42 @@
+class Solution {
+public:
+    
+
+    
+    int longestPalindrome(string s) {
+        
+        int max_odd=0;
+        int count=0;
+        unordered_map<char,int> hp;
+        for( auto c:s)
+        {
+            hp[c]++;
+        }
+        
+        for(auto it:hp)
+        {
+            if(it.second%2==0)
+            {
+                count+=it.second;
+            }
+            else
+            {
+                max_odd=max(max_odd,it.second);
+                if(it.second>2)
+                {
+                    count+=it.second-1;
+                }
+               
+            }
+            
+            
+        }
+        
+        if(max_odd>2)
+        {
+            count=count-max_odd+1;
+        }
+        
+        return max_odd+count;
+    }
+};
