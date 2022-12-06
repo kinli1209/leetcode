@@ -1,0 +1,60 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        
+        string ans="";
+        char carry='0';
+        stack<char> first;
+        stack<char> second;
+        stack<char> third;
+        
+        for(auto i:a)
+        {
+            first.push(i);
+        }
+        
+        for(auto i:b)
+        {
+            second.push(i);
+        }
+        
+        while(!first.empty()||!second.empty() || carry=='1')
+        {
+             char temp1='0';
+             char temp2='0';
+           
+            
+             if(!first.empty())
+             {
+                 temp1=first.top();
+                  first.pop();
+             } 
+             
+             if(!second.empty())
+             {
+                 temp2=second.top();
+                  second.pop();
+             }     
+           
+  
+             if( (temp1 ^ temp2 ^ carry) =='1' )
+             third.push('1');
+             else 
+             third.push('0');
+            
+             if(temp1&temp2=='1'||temp1&carry=='1'||temp2&carry=='1')
+             carry='1';
+             else
+             carry='0';
+            
+        }
+
+        while(!third.empty())
+        {
+            ans+=third.top();
+            third.pop();
+        }
+        
+        return ans;
+    }
+};
