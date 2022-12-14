@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        
+        vector<vector<int>> ans;
+       
+        int index=0;
+        int n=points.size();
+        vector<vector<int>> distance;
+        for(auto it:points)
+        {
+            int dis=pow(it[0],2)+pow(it[1],2);
+            distance.push_back({dis,index});
+            
+            index++;
+        }
+ 
+        
+        sort(distance.begin(),distance.end());
+        
+        
+        for(int i=0;i<k;i++)
+        {
+            ans.push_back(points[distance[i][1]]);
+        }
+
+        return ans;
+    }
+};
