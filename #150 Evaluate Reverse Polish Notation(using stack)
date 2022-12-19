@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<string> mystack;
+        stack<long int> st;
+        int ans;
+        for(auto it:tokens)
+        {
+          
+            if(it=="+"||it=="-"||it=="*"||it=="/")
+            {
+                long int temp1;
+                long int temp2;    
+                 temp2=st.top();
+                 st.pop();
+                 temp1=st.top();
+                 st.pop();
+
+                 if(it=="+")
+                 {
+                     st.push(temp1+temp2);
+                 }
+                 if(it=="-")
+                 {
+                     st.push(temp1-temp2);
+                 }
+                 if(it=="*")
+                 {
+                     st.push(temp1*temp2);
+                 }
+                 if(it=="/")
+                 {
+                    st.push(temp1/temp2);
+                 }
+
+            }
+            else
+            {
+                   st.push(stoi(it));
+            }
+           
+        }
+         
+     
+        ans=st.top();
+        
+        return ans;
+    }
+};
