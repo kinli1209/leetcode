@@ -1,0 +1,64 @@
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        bool withfresh=false;
+        int offset[5]={0,-1,0,1,0};
+        int freashnum=0;
+        int mintimes=0;
+        vector<vector<int>> update(m,vector(n,-1));
+        queue<vector<int>> q;  
+        for(int i=0;i< m;i++)
+        {
+             for(int j=0;j<n;j++)
+             {
+                 if(grid[i][j]==2)
+                 {
+                     q.push({i,j});
+                     grid[i][j]=3;
+                     update[i][j]=0;
+                     withfresh=true;
+                 }
+                 else if(grid[i][j]==1)
+                 {
+                     freashnum++;
+                     withfresh=true;
+                 }
+
+             }
+        }
+        
+        if(withfresh==false){return 0;}
+        
+        while(!q.empty())
+        {
+            vector<int> point;
+            point=q.front();
+            q.pop();
+            grid[point[0]][point[1]]=3;
+            for(int i=0;i<4;i++)
+            {
+                 int x=point[0]+offset[i];
+                 int y=point[1]+offset[i+1];
+                 if(x>=0 &&x<m &&y>=0 &&y<n && grid[x][y]==1)
+                 {
+                     grid[x][y]=2;
+                     q.push({x,y});
+                     freashnum--;
+                     update[x][y]=update[point[0]][point[1]]+1;
+                     mintimes=max(mintimes,update[x][y]);
+                 }
+
+            }  
+
+        }
+
+        if(freashnum>0){return -1;}
+
+    
+
+        return mintimes;
+
+    }
+};
